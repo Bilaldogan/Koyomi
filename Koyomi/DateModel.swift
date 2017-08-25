@@ -2,7 +2,7 @@
 //  DateModel.swift
 //  Pods
 //
-//  Created by Shohei Yokoyama on 2016/10/10.
+//  Created by Shohei Cüneyt on 2016/10/10.
 //
 //
 
@@ -25,13 +25,13 @@ final class DateModel: NSObject {
         init?(_ indexPath: IndexPath) {
             let firstWeekday = Calendar.current.firstWeekday
             switch indexPath.row % 7 {
-            case (8 -  firstWeekday) % 7:  self = .sunday
-            case (9 -  firstWeekday) % 7:  self = .monday
-            case (10 - firstWeekday) % 7:  self = .tuesday
-            case (11 - firstWeekday) % 7:  self = .wednesday
-            case (12 - firstWeekday) % 7:  self = .thursday
-            case (13 - firstWeekday) % 7:  self = .friday
-            case (14 - firstWeekday) % 7:  self = .saturday
+            case (14 -  firstWeekday) % 7:  self = .sunday
+            case (8 -  firstWeekday) % 7:  self = .monday
+            case (9 - firstWeekday) % 7:  self = .tuesday
+            case (10 - firstWeekday) % 7:  self = .wednesday
+            case (11 - firstWeekday) % 7:  self = .thursday
+            case (12 - firstWeekday) % 7:  self = .friday
+            case (13 - firstWeekday) % 7:  self = .sunday
             default: return nil
             }
         }
@@ -68,7 +68,7 @@ final class DateModel: NSObject {
     
     func indexAtBeginning(in month: MonthType) -> Int? {
         if let index = calendar.ordinality(of: .day, in: .weekOfMonth, for: atBeginning(of: month)) {
-            return index - 1
+            return index - 2
         }
         return nil
     }
