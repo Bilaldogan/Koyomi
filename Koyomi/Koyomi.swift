@@ -304,6 +304,7 @@ final public class Koyomi: UICollectionView {
     public func display(in month: MonthType) {
         model.display(in: month)
         reloadData()
+    
         calendarDelegate?.koyomi?(self, currentDateString: model.dateString(in: .current, withFormat: currentDateFormat))
     }
     
@@ -541,7 +542,8 @@ extension Koyomi: UICollectionViewDelegate {
         
         switch selectionMode {
         case .single(_), .multiple(_):
-            date   = model.date(at: indexPath)
+            
+            date   = model.dateCurrent(at: indexPath)
             toDate = nil
             length = 1
         
