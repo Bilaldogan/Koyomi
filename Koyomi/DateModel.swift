@@ -2,7 +2,7 @@
 //  DateModel.swift
 //  Pods
 //
-//  Created by Shohei Cüneyt on 2016/10/10.
+//  Created by Shohei Yokoyama on 2016/10/10.
 //
 //
 
@@ -25,13 +25,13 @@ final class DateModel: NSObject {
         init?(_ indexPath: IndexPath) {
             let firstWeekday = Calendar.current.firstWeekday
             switch indexPath.row % 7 {
-            case (14 -  firstWeekday) % 7:  self = .sunday
-            case (8 -  firstWeekday) % 7:  self = .monday
-            case (9 - firstWeekday) % 7:  self = .tuesday
-            case (10 - firstWeekday) % 7:  self = .wednesday
-            case (11 - firstWeekday) % 7:  self = .thursday
-            case (12 - firstWeekday) % 7:  self = .friday
-            case (13 - firstWeekday) % 7:  self = .sunday
+            case (8 -  firstWeekday) % 7:  self = .sunday
+            case (9 -  firstWeekday) % 7:  self = .monday
+            case (10 - firstWeekday) % 7:  self = .tuesday
+            case (11 - firstWeekday) % 7:  self = .wednesday
+            case (12 - firstWeekday) % 7:  self = .thursday
+            case (13 - firstWeekday) % 7:  self = .friday
+            case (14 - firstWeekday) % 7:  self = .saturday
             default: return nil
             }
         }
@@ -68,7 +68,7 @@ final class DateModel: NSObject {
     
     func indexAtBeginning(in month: MonthType) -> Int? {
         if let index = calendar.ordinality(of: .day, in: .weekOfMonth, for: atBeginning(of: month)) {
-            return index - 2
+            return index - 1
         }
         return nil
     }
@@ -111,9 +111,15 @@ final class DateModel: NSObject {
     }
     
     func date(at indexPath: IndexPath) -> Date {
+        
         return currentDates[indexPath.row]
     }
-    
+    func dateCurrent( at indexPath: IndexPath) -> Date {
+        
+        var component = DateComponents()
+        component.day = 1
+        return calendar.date(byAdding: component, to: currentDates[indexPath.row])!
+    }
     func willSelectDate(at indexPath: IndexPath) -> Date? {
         let date = currentDates[indexPath.row]
         return selectedDates[date] == true ? nil : date
