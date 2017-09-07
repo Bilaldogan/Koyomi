@@ -17,7 +17,7 @@ final class DateModel: NSObject {
     static let maxCellCount   = 42
     
     // Week text
-    var weeks: (String, String, String, String, String, String, String) = ("SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT")
+    var weeks: (String, String, String, String, String, String, String) = ("Pzt", "Sal", "Çar", "Per", "Cum", "Cmt", "Pzr")
     
     enum WeekType: String {
         case monday, tuesday, wednesday, thursday, friday, saturday, sunday
